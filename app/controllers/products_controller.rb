@@ -3,15 +3,11 @@ class ProductsController < ApplicationController
 
 
   def sum
-    @price_sum=0
-    (Product.all).each do |t|
-      @price_sum += t.price
-    end
-    return @price_sum
+    @price_sum=Product.sum(:price)
   end
 
   def averedge
-    @averedge_price = (self.sum)/(Product.all).length
+    @averedge_price = Product.average(:price)
   end
 
   def extremums
@@ -25,7 +21,6 @@ class ProductsController < ApplicationController
   end
 
   def cheap
-    @cheap = Array.new
     @cheap = Product.where('price<?',100)
   end
 
