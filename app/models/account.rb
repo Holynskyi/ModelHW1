@@ -4,9 +4,9 @@ class GoodNameValidator < ActiveModel::Validator
     undigit_presenese = false
     record.name.each_char do |c|
     	undigit_presenese=true if !digits.include?(c)    	
-  	  end
+  	end
     unless undigit_presenese
-      record.errors[:name] << "Name can not be only from digits"
+      record.errors[:name] << "Name can not consist from digits only"
     end
   end
 end
@@ -14,7 +14,7 @@ end
 class Account < ActiveRecord::Base
 	has_one :cart
 
-  	validates_with GoodNameValidator
+  validates_with GoodNameValidator
 	validates :name, presence: true, length: {in: 8..20}
 	validates :age, presence: true, inclusion: {in: 18..100}
 end
