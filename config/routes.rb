@@ -1,22 +1,23 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :accounts
-  resources :products
+  resources :products do
+        collection do
+         get 'averedge'
+         get 'sum'
+         get 'extremums'
+         get 'onlyTV'
+         get 'cheap'
+       end
+  end  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-
-      get 'productsaveredge' => 'products#averedge'
-      get 'productssum' => 'products#sum'
-      get 'productsextremum' => 'products#extremums'
-      get 'productsTV' => 'products#onlyTV'
-      get 'productscheap' => 'products#cheap'
-
-
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

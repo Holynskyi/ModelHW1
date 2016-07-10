@@ -3,9 +3,8 @@ class CreateAccounts < ActiveRecord::Migration
     create_table :accounts do |t|
       t.string :name
       t.integer :age
-
       t.timestamps null: false
-    end
-    #add_reference :cart, :account, index: true
+      t.belongs_to :user
+    end    
   end
 end

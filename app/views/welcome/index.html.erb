@@ -1,0 +1,10 @@
+Welcome!
+<p>
+	<% if user_signed_in? %>
+    	<p>Вітаємо, старий друже <%= current_user.email %> <%= current_user.encrypted_password %></p>
+    	<%= link_to 'Вийти', destroy_user_session_path, :method => :delete %>   
+	<% else %>
+	    <%= link_to 'Зайти', new_user_session_path %> або <%= link_to 'Познайомитись', new_user_registration_path %>
+	<% end %>
+</p>
+<%= link_to 'Акаунти', accounts_path %>

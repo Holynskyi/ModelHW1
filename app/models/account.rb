@@ -13,8 +13,9 @@ end
 
 class Account < ActiveRecord::Base
 	has_one :cart
+  belongs_to :user
 
   validates_with GoodNameValidator
 	validates :name, presence: true, length: {in: 8..20}
 	validates :age, presence: true, inclusion: {in: 18..100}
-end
+end 

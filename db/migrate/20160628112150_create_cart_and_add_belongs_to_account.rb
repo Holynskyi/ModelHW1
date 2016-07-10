@@ -1,9 +1,8 @@
 class CreateCartAndAddBelongsToAccount < ActiveRecord::Migration
   def change
-    create_table :cart do |t|
-    	t.belongs_to :account
+    create_table :carts do |t|
+    	t.belongs_to :account, index: true
     	t.timestamps null: false
     end
-    add_reference :cart, :account
   end
 end
