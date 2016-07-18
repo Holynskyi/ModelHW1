@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :add_to_cart]
   before_filter :authenticate_user!
 
   def sum
@@ -82,6 +82,13 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end 
+
+  def add_to_cart
+    @account=current_user.account
+    @cart = @account.cart
+    @product.cart = @cart
+    @product.save
   end
 
   private

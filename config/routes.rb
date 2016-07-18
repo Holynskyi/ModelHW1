@@ -1,14 +1,22 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :accounts
+  resources :accounts do
+    member do
+      get 'connect'      
+    end
+  end
+  
   resources :products do
-        collection do
-         get 'averedge'
-         get 'sum'
-         get 'extremums'
-         get 'onlyTV'
-         get 'cheap'
-       end
+    collection do
+      get 'averedge'
+      get 'sum'
+      get 'extremums'
+      get 'onlyTV'
+      get 'cheap'
+    end
+    member do
+      get 'add_to_cart'      
+    end
   end  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -18,6 +26,8 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  get 'cart' => 'cart#get_owner'
+  get 'cart/products' => 'cart#show_products'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

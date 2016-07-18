@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_account, only: [:show, :edit, :update, :destroy, :connect]
+  before_filter :authenticate_user!
   # GET /accounts
   # GET /accounts.json
   def index
@@ -59,6 +59,12 @@ class AccountsController < ApplicationController
       format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def connect
+    @account.user = current_user    
+    #@account.user_id = @user.id
+    @account.save
   end
 
   private

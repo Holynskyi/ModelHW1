@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Accounts</h1>
+<h1>Listing Accounts, choose yours</h1>
 
 <table>
   <thead>
@@ -19,6 +19,9 @@
         <td><%= link_to 'Show', account %></td>
         <td><%= link_to 'Edit', edit_account_path(account) %></td>
         <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Choose_account', "accounts/#{account.id}/connect"
+        #connect_account_path(account) 
+        %></td>
       </tr>
     <% end %>
   </tbody>
