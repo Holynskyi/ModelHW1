@@ -20,4 +20,8 @@ class CartController < ApplicationController
 		
 	end
 
+	def make_order
+		CartMailer.order_email(current_user).deliver_later		
+	end
+
 end
