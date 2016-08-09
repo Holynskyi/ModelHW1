@@ -1,24 +1,28 @@
-Welcome!
-<p>
-	<% if user_signed_in? %>
-    	<p>Вітаємо, старий друже <%= current_user.email %> </p>
-    	<%= link_to 'Вийти', destroy_user_session_path, :method => :delete %>
-    	<p>
-    	<% if current_user.account %>
-			Ваш акаунт: <%= current_user.account.name %> 
+		
+		<p ><a  href=http://html.hasbrains.org/screencasts/9>Welcome!</a></p>
+		
+		<p>
+		<img src ="http://vignette2.wikia.nocookie.net/lotr/images/a/aa/Enano_Akd_-_Eru_Il%D1%8Avatar_and_the_Timeless_Halls.jpg/revision/latest?cb=20150804125737&path-prefix=ru" />
+		</p>
+
+		<% if user_signed_in? %>
+		   	<p > <b>Вітаємо, старий друже <%= current_user.email %> </b></p>
+		   	<%= link_to 'Вийти', destroy_user_session_path, :method => :delete %>
+		   	<p >
+		   	<% if current_user.account %>
+				Ваш акаунт: <%= current_user.account.name %> 
+			<% else %>
+				<%= link_to 'виберіть свій акаунт', accounts_path %>
+			<% end %>
+			</p>   
 		<% else %>
-			<%= link_to 'виберіть свій акаунт', accounts_path %>
+		<%= link_to 'Зайти', new_user_session_path %> 
+		
+		<p class='test'> або </p>
+		
+		<%= link_to 'Познайомитись', new_user_registration_path %>
 		<% end %>
-		</p>   
-	<% else %>
-	    <%= link_to 'Зайти', new_user_session_path %> або <%= link_to 'Познайомитись', new_user_registration_path %>
-	<% end %>
-</p>
 
-<p>
-	<%= link_to 'Вибрати товари', products_path %> 
-</p>
+		<p>	<%= link_to 'Вибрати товари', products_path %> </p>
 
-<p>
-	<%= link_to 'Переглянути корзину', cart_path %> 
-</p>
+		<p>	<%= link_to 'Переглянути корзину', cart_path %> </p>

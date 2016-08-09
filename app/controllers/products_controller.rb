@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     @min = @temp[-1]
   end
 
-  def onlyTV
+  def onlyTV 
     @TVinclude = Product.where(name:'TV')
   end
 
@@ -27,7 +27,11 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.order(:price)
+    text = params["text"].presence
+    #binding.pry
+    @products = Product.all    
+    @products = @products.where(name: text) if text
+    @products = @products.order(:price)
   end
 
   # GET /products/1
