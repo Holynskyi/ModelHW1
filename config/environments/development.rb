@@ -43,5 +43,15 @@ Rails.application.configure do
   #is an example of default_url_options appropriate for a development environment
   #in config/environments/development.rb:
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.smtp_settings ={
+    address: "smtp.gmail.com",
+    port: 587,
+    sdomain: "gmail.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: "allmyprojecttest@gmail.com",
+    password: "AllMyProjectTest1234" 
+  }
+
 
 end

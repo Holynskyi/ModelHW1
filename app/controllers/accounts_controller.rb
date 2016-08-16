@@ -70,7 +70,8 @@ class AccountsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
-      @account = Account.find(params[:id])
+      @account = Account.where(id: params[:id]).first
+      render_404 unless @account
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

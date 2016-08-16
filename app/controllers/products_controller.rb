@@ -67,15 +67,11 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
+          redirect_to @product, notice: 'Product was successfully updated.'
+        else
+          render :edit
+        end
   end
 
   # DELETE /products/1
@@ -93,12 +89,15 @@ class ProductsController < ApplicationController
     @cart = @account.cart
     @product.cart = @cart
     @product.save
+    
+    
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @product = Product.where(id: params[:id]).first
+      render_404 unless @product
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

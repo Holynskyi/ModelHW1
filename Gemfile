@@ -40,6 +40,12 @@ gem 'haml'
 gem 'devise-bootstrap-views'
 gem 'bootstrap-sass'
 
+
+ # Gemfile in Rails >= 3.1
+gem 'activeadmin','>= 1.0.0.pre1'
+# gem 'sass-rails'
+# gem "meta_search", '>= 1.1.0.pre'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -1,0 +1,11 @@
+%p 
+  Корзина
+  =@owner.name 
+
+%ul
+  - if @products.present?
+    - @products.each do |product| 
+      %li 
+        = product.name
+%p
+  = link_to 'зробити замовлення', cart_products_order_path
