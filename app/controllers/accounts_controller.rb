@@ -62,7 +62,8 @@ class AccountsController < ApplicationController
   end
 
   def connect
-    @account.user = current_user    
+    #@account.user = current_user 
+    current_user.account = @account
     #@account.user_id = @user.id
     @account.save
   end

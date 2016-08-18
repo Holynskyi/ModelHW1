@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Models Hw"
+  config.site_title = "ModelsHW"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -19,7 +19,16 @@ ActiveAdmin.setup do |config|
   # config.site_title_image = "logo.png"
 
   # == Default Namespace
-  #
+
+  config.namespace :admin do |admin|
+    # bindnig.pry
+    admin.site_title = "Admin Site"
+  end
+
+  config.namespace :super_admin do |super_admin|
+    super_admin.site_title = "Super Admin Site"
+  end
+  
   # Set the default namespace each administration resource
   # will be added to.
   #
@@ -94,7 +103,7 @@ ActiveAdmin.setup do |config|
   # settings configure the location and method used for the link.
   #
   # This setting changes the path where the link points to. If it's
-  # a string, the strings is used as the path. If it's a Symbol, we
+  #   config.current_user_method = :current_admin_usera string, the strings is used as the path. If it's a Symbol, we
   # will call the method to return the path.
   #
   # Default:

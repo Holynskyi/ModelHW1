@@ -47,12 +47,18 @@
           <ul class="nav navbar-nav">
             <% if user_signed_in? %>
               <li><%= link_to 'Вийти', destroy_user_session_path, :method => :delete %></li>
-              <li class="btn btn-xs btn-default">
+              <li class="btn btn-default">
                 <% if current_user.account %>
-                  <%= link_to "Ваш акаунт:" + current_user.account.name + current_user.email , edit_account_path(current_user.account) %>
+                  <%= link_to "Ваш акаунт:" + current_user.account.name , edit_account_path(current_user.account) %>
                 <% else %>
                   <%= link_to 'виберіть акаунт', accounts_path %>
                 <% end %>
+              </li>
+
+              <li class="btn btn-default">
+                <% if current_user.account %>
+                  <%= link_to "Ваша пошта:"+current_user.email, accounts_path %>
+                <%end%>                 
               </li>   
             <% else %>
               <li class="btn btn-xs btn-default"> <%= link_to 'Зайти', new_user_session_path %> 

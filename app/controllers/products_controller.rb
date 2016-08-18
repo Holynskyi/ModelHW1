@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :add_to_cart]
+  before_action :set_locale, :set_product, only: [:show, :edit, :update, :destroy, :add_to_cart]
   before_filter :authenticate_user!
 
   def sum
@@ -51,11 +51,12 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+    #binding.pry
     @product = Product.new(product_params)
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product, notice: "#{@product.name} was successfully created."}
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -68,7 +69,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
       if @product.update(product_params)
-          redirect_to @product, notice: 'Product was successfully updated.'
+          redirect_to @product, notice: "#{@product.name} was successfully updated."
         else
           render :edit
         end
@@ -79,18 +80,21 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to products_url, notice: "#{@product.name} was successfully destroyed." }
       format.json { head :no_content }
     end
   end 
 
   def add_to_cart
-    @account=current_user.account
-    @cart = @account.cart
-    @product.cart = @cart
-    @product.save
-    
-    
+    account = current_user.account
+    if account && account.cart
+      cart = account.cart
+      @product.cart = cart
+      @product.save
+      redirect_to products_path, notice: "#{@product.name} was added to cart."
+    else
+      redirect_to cart_path
+    end
   end
 
   private
@@ -103,5 +107,10 @@ class ProductsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
       params.require(:product).permit(:name, :description, :price, :image)
+    end
+
+    def set_locale
+      I18n.locale = :uk
+      #binding.pry
     end
 end

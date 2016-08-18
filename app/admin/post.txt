@@ -1,0 +1,37 @@
+ActiveAdmin.register Post do
+
+# See permitted parameters documentation:
+# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
+#
+	permit_params :title, :content, :publisher_id,
+    tags_attributes: [:id, :name, :description, :_destroy]
+
+# permit_params :title, :content, :publisher_id
+#
+# or
+#
+# permit_params do
+#   permitted = [:permitted, :attributes]
+#   permitted << :other if params[:action] == 'create' && current_user.admin?
+#   permitted
+# end
+
+  controller do
+    def create
+      # Good
+      @post = Post.new(permitted_params[:post])
+      # Bad
+      # @post = Post.new(params[:post])
+
+      if @post.save
+        # ...
+      end
+    end
+  end
+
+end
+
+# Note that `accepts_nested_attributes_for` is still required:
+class Post < ActiveRecord::Base
+  accepts_nested_attributes_for :tags, allow_destroy: true
+end
