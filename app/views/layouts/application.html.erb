@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+    #circle {background-color: red;
+      position: absolute;
+      height: 100px;
+      width: 100px;
+      left: 200px;
+      top: 0px;
+      border-radius: 50%;
+    }
+  </style>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ModelsHW</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -33,15 +44,15 @@
         <ul class="nav navbar-nav">
           <li > <%= link_to 'Products', products_path %> </li>
           <li > <%= link_to 'Cart', cart_path %> </li>
+          <li > <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %> </li>
         </ul>
 
         <%= form_tag products_path, method: "get", class: "navbar-form navbar-left" do %>
         	<div class="form-group">
-        		<%= text_field_tag :text, nil, class:"form-control", placeholder:"Введіть текст сюди" %>
+        		<%= text_field_tag :text, nil, class:"form-control", placeholder:"Введіть назву товару" %>
         	</div>
         	<%= submit_tag "Пошук", class:"btn btn-default" %>
         <% end %>
-
 
         <div class="pull-right">
           <ul class="nav navbar-nav">

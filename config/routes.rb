@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users
+
+  devise_for :users,  controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+
   resources :accounts do
     member do
       get 'connect'      
     end
   end
   
-  #devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-
   resources :products do
     collection do
       get 'averedge'
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'welcome#welcome'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

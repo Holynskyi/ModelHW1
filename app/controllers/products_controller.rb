@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
   before_action :set_locale, :set_product, only: [:show, :edit, :update, :destroy, :add_to_cart]
   before_filter :authenticate_user!
 
+  #@widget.impressionist_count(:filter=>:all)
+
   def sum
     @price_sum = Product.sum(:price)
   end
@@ -27,6 +29,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    #@widget = Widget.find(impressionist(@widget, "message...")) # 2nd argument is optional
+    #@widget.impressionist_count(:filter=>:all)
     text = params["text"].presence
     #binding.pry
     @products = Product.all    
@@ -91,7 +95,7 @@ class ProductsController < ApplicationController
       cart = account.cart
       @product.cart = cart
       @product.save
-      redirect_to products_path, notice: "#{@product.name} was added to cart."
+      redirect_to products_path, notice: "#{@product.name} has been added to the cart."
     else
       redirect_to cart_path
     end

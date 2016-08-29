@@ -43,6 +43,7 @@ gem 'bootstrap-sass'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
+gem 'impressionist'
 
  # Gemfile in Rails >= 3.1
 gem 'activeadmin','>= 1.0.0.pre1'
